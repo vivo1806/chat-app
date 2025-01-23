@@ -1,0 +1,245 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+header {
+  width: 100%;
+  max-width: 40.25rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: #4caf50;
+  margin-bottom: 1.25rem;
+}
+
+/* Messages Section */
+#messages {
+  height: 40rem;
+  overflow-y: auto;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.25rem;
+  padding: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.message {
+  width: 7rem;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border-radius: 0.3125rem;
+  background-color: #e7f7df;
+  position: relative;
+}
+
+.message p {
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.message_name {
+  font-weight: bold;
+  color: #4caf50;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.message_meta {
+  font-size: 0.875rem;
+  color: #999;
+  display: inline-block;
+}
+
+.message_content {
+  margin-top: 0.5rem;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input-container {
+  position: relative;
+  flex: 1;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 0.5rem 0.3125rem;
+  border: none;
+  border-bottom: 0.125rem solid #ddd;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-container input:focus {
+  border-bottom: 0.125rem solid #4caf50;
+}
+
+.input-container .label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.3125rem;
+  font-size: 1rem;
+  color: #999;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.input-container input:focus + .label,
+.input-container input:not(:placeholder-shown) + .label {
+  top: -1.25rem;
+  font-size: 0.75rem;
+  color: #4caf50;
+}
+
+.input-container .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.125rem;
+  background-color: #4caf50;
+  transition: 0.3s;
+}
+
+.input-container input:focus ~ .underline {
+  width: 100%;
+}
+
+/* Button Styles */
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#send-location {
+  margin-top: 0.625rem;
+  width: auto;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  /* Add your background pattern here */
+  background-color: #313131;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.171) 2px,
+    transparent 0
+  );
+  background-size: 30px 30px;
+  background-position: -5px -5px;
+}
+
+button.join {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.join:hover {
+  background-color: #45a049;
+}
+
+.card {
+  --background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  padding: 5px;
+  border-radius: 1rem;
+  overflow: visible;
+  background: #f7ba2b;
+  background: var(--background);
+  position: relative;
+  z-index: 1;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  transform: scale(0.8);
+  filter: blur(25px);
+  background: #f7ba2b;
+  background: var(--background);
+  transition: opacity 0.5s;
+}
+
+.card-info {
+  --color: #181818;
+  background: var(--color);
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  border-radius: 0.7rem;
+}
+
+.card .title {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+/*Hover*/
+.card:hover::after {
+  opacity: 0;
+}
+
+.card:hover .card-info {
+  color: #f7ba2b;
+  transition: color 1s;
+}
+
+.card label {
+  margin-bottom: 0.5rem; /* Optional: Adds space between label and input */
+}
+
+.card input,
+.card textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem; /* Adds space between the form fields */
+}
