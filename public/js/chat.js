@@ -17,10 +17,35 @@ const $messageform = document.querySelector("#form");
 const $messageinput = document.querySelector("#msg");
 const $messagebtn = document.querySelector("button");
 const $sendlocationbtn = document.querySelector("#send-location");
-const $message = document.querySelector("#messages");
+const $messages = document.querySelector("#messages");
+const $container = document.querySelector(".container");
+const $sidebar = document.querySelector("#sidebar");
 const messagetemplate = document.querySelector("#message-template").innerHTML;
+const sidebartemplate = document.querySelector("#sidebar-template").innerHTML;
 const locationtemplate = document.querySelector("#locationtemplate").innerHTML;
+const { username, room } = Qs.parse(location.search, {
+  ignoreQueryPrefix: true,
+});
 
+const autoScroll = () => {
+  const $newmessage = $messages.lastElementChild;
+  const newmessageStyle = getComputedStyle($newmessage);
+  const newmessageMargin = parseInt(newmessageStyle.marginBottom);
+  const newmessageheight = $newmessage.offsetHeight + newmessageMargin;
+
+  const visibleHeight = $container.offsetHeight;
+  const containerHeight = $container.scrollHeight;
+  const scrollOffset = $container.scrollTop + visibleHeight;
+  console.log(containerHeight, "containerheight");
+  console.log(newmessageheight, "newmessageheight");
+  console.log(scrollOffset, "scrollOffset");
+  if (containerHeight - newmessageheight <= scrollOffset) {
+    //NOTE:automate scroll
+    //
+    $container.scrollTop = $container.scrollHeight;
+    console.log($container.scrollTop);
+  }
+};
 // Disable the submit button initially
 $messagebtn.setAttribute("disabled", "disabled");
 
@@ -56,19 +81,25 @@ $messageform.addEventListener("submit", (e) => {
 });
 socket.on("message", (msg) => {
   const html = Mustache.render(messagetemplate, {
+    username: msg.username,
     msg: msg.text,
     time: moment(msg.createdAt).format("h:mm a"),
   });
-  $message.insertAdjacentHTML("beforeend", html);
+  $messages.insertAdjacentHTML("beforeend", html);
+  autoScroll();
 });
 
 socket.on("locationmessage", (url) => {
   const html = Mustache.render(locationtemplate, {
+    username: url.username,
     url: url.url,
     time: moment(url.createdAt).format("h:mm a"),
   });
 
   $message.insertAdjacentHTML("beforeend", html);
+  setTimeout(() => {
+    autoScroll();
+  }, 0);
 });
 $sendlocationbtn.addEventListener("click", () => {
   console.log("bug1");
@@ -90,4 +121,19 @@ $sendlocationbtn.addEventListener("click", () => {
       },
     );
   });
+});
+
+socket.on("roomData", ({ room, users }) => {
+  const html = Mustache.render(sidebartemplate, {
+    room,
+    users,
+  });
+  $sidebar.innerHTML = html;
+});
+
+socket.emit("join", { username, room }, (error) => {
+  if (error) {
+    alert(error);
+    location.href = "/";
+  }
 });

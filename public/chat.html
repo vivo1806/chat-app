@@ -8,40 +8,61 @@
   </head>
   <body>
     <header>
-      <div id="chat__sidebar"></div>
-      <h1>Chat app</h1>
-      <div class="container">
-        <div id="messages"></div>
-      </div>
-      <form id="form">
-        <!-- From Uiverse.io by Satwinder04 -->
-        <div class="input-container">
-          <input type="text" id="msg" required="" />
-          <label for="msg" class="label">Enter message</label>
-          <div class="underline"></div>
+      <div class="chat-app">
+        <div id="sidebar">
+          <h2>Users in Room</h2>
+          <ul id="user-list"></ul>
         </div>
-        <button id="btn">Send</button>
-      </form>
-      <button id="send-location">send location</button>
+        <main>
+          <header>
+            <h1>Chat app</h1>
+            <div class="container">
+              <div id="messages"></div>
+            </div>
+            <form id="form">
+              <div class="input-container">
+                <input type="text" id="msg" required autocomplete="off" />
+                <label for="msg" class="label">Enter message</label>
+                <div class="underline"></div>
+              </div>
+              <button id="btn">Send</button>
+            </form>
+            <button id="send-location">send location</button>
+          </header>
+        </main>
+      </div>
 
+      <!--NOTE:message template  -->
       <script id="message-template" type="text/html">
         <div class="message">
           <p>
-            <span class="message_name">some user</span>
+            <span class="message_name">{{username}}</span>
           </p>
           <p>{{msg}}</p>
           <p><span class="message_meta">{{time}}</span></p>
         </div>
       </script>
 
+      <!--NOTE:location template-->
       <script id="locationtemplate" type="text/html">
         <div class="message">
           <p>
-            <span class="message_name">some user</span>
+            <span class="message_name">{{username}}</span>
           </p>
           <p><a href="{{url}}">my current location</a></p>
           <p><span class="message_meta">{{time}}</span></p>
         </div>
+      </script>
+
+      <!--NOTE: Sidepanel users template-->
+      <script id="sidebar-template" type="text/html">
+        <h2 class="room-title">{{room}}</h2>
+        <h3 class="list-title">users</h3>
+        <ul class="users">
+          {{#users}}
+          <li>{{username}}</li>
+          {{/users}}
+        </ul>
       </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>

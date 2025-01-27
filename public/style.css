@@ -29,7 +29,7 @@ h1 {
 /* Messages Section */
 #messages {
   height: 40rem;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   border: 0.0625rem solid #ddd;
   border-radius: 0.25rem;
   padding: 0.625rem;
@@ -145,6 +145,7 @@ button:hover {
 }
 
 .container {
+  overflow-y: auto;
   width: 100%;
   height: 100%;
   /* Add your background pattern here */
@@ -242,4 +243,89 @@ button.join:hover {
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem; /* Adds space between the form fields */
+}
+
+.chat-app {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.sidebar {
+  flex: 0 0 20%;
+  background-color: #f5f5f5;
+  color: black;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 0.125rem solid #fff;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  .room-title {
+    font-weight: 400;
+    font-size: 22px;
+    background: #2c2f3a;
+    padding: 24px;
+  }
+
+  .list-title {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 4px;
+    padding: 12px 24px 0 24px;
+  }
+
+  .users {
+    list-style-type: none;
+    font-weight: 300;
+    padding: 12px 24px 0 24px;
+  }
+  border-radius: 0.25rem;
+  background-color: #45a049;
+  font-size: 1rem;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.sidebar li:hover {
+  background-color: #388e3c;
+}
+
+.room-title {
+  font-weight: 400;
+  font-size: 22px;
+  background: #2c2f3a;
+  color: white;
+  padding: 24px;
+}
+
+.list-title {
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 4px;
+  padding: 12px 24px 0 24px;
+}
+
+.users {
+  list-style-type: none;
+  font-weight: 300;
+  padding: 12px 24px 0 24px;
 }

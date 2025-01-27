@@ -1,13 +1,14 @@
-export const generateMessage = (text) => {
+export const generateMessage = (username, text) => {
   return {
+    username,
     text,
     createdAt: new Date().getTime(),
   };
 };
 
-export const generateLocationMessage = (url) => {
-  console.log("check2");
+export const generateLocationMessage = (username, url) => {
   return {
+    username,
     url,
     createdAt: new Date().getTime(),
   };
